@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Nim Dema - Korean Inspired Handicrafts</title>
+    <style>
+        /* Global Styles & "Love" Theme - Copied from index.html for consistency */
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #ff69b4; /* Hot blue - love */
+            --secondary-color: #ffb6c1; /* Light Pink */
+            --accent-color: #dda0dd; /* Plum - sophisticated love */
+            --text-color: #4a4a4a;
+            --bg-color: #fff0f5; /* Lavender Blush - soft, loving background */
+            --korean-red: #C90016;
+            --korean-blue: #0047AB;
+            --gold-accent: #FFD700;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        /* --- Navigation (Same as index.html) --- */
+        nav { background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; transition: top 0.3s; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Parisienne', cursive; font-size: 2.5rem; color: var(--primary-color); text-decoration: none; }
+        .logo:hover { color: var(--accent-color); }
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 600; padding: 0.5rem 1rem; border-radius: 5px; transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background-color: var(--primary-color); transform: translateY(-2px); }
+        .menu-toggle { display: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
+
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(255,182,193,0.6), rgba(221,160,221,0.6)), url('https://images.pexels.com/photos/7688161/pexels-photo-7688161.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Abstract soft background */
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 1s ease-out;
+        }
+        .page-header h1 {
+            font-family: 'Parisienne', cursive;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 10px auto 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* About Content Section */
+        .about-content-section {
+            padding: 50px 0;
+            background-color: #fff;
+        }
+        .about-flex {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        .about-image {
+            flex: 1 1 300px; /* Grow, shrink, basis */
+            animation: slideInLeft 1s ease-out;
+        }
+        .about-image img {
+            width: 100%;
+            max-width: 400px; /* Control max size */
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(255,105,180,0.2);
+            object-fit: cover; /* Ensure image covers area well */
+            border: 5px solid var(--secondary-color);
+        }
+        .about-text {
+            flex: 2 1 500px;
+            animation: slideInRight 1s ease-out;
+        }
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--korean-red);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .about-text strong {
+            color: var(--primary-color);
+        }
+
+        .passion-section {
+            background-color: var(--bg-color);
+            padding: 50px 0;
+            text-align: center;
+        }
+        .passion-section h3 {
+            font-family: 'Parisienne', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-out 0.2s;
+             animation-fill-mode: backwards;
+        }
+        .passion-section p {
+             max-width: 700px;
+             margin: 0 auto 15px auto;
+             animation: fadeInUp 1s ease-out 0.4s;
+             animation-fill-mode: backwards;
+        }
+
+        /* --- Footer (Same as index.html) --- */
+        footer { background-color: var(--secondary-color); color: var(--text-color); text-align: center; padding: 30px 0; margin-top: 0; }
+        footer p { margin: 5px 0; font-size: 0.9rem; }
+        footer a { color: var(--primary-color); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* --- Animation Keyframes (Add new ones if needed) --- */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Responsive Design (Same as index.html) --- */
+        @media (max-width: 768px) {
+            .logo { font-size: 2rem; }
+            .menu-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 70px; left: 0; background-color: rgba(255, 255, 255, 0.95); padding: 1rem 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 0; width: 100%; text-align: center; }
+            .nav-links a { display: block; padding: 1rem; border-bottom: 1px solid var(--bg-color); }
+            .nav-links a:hover, .nav-links a.active { background-color: var(--primary-color); color: #fff; transform: none; }
+
+            .page-header h1 { font-size: 2.8rem; }
+            .about-flex { flex-direction: column; text-align: center; }
+            .about-image img { margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">Nim Dema</a>
+            <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Me</a></li>
+                <li><a href="creations.html">My Creations</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>My Story of Craft & Love</h1>
+        <p>Discover the passion behind every piece I create.</p>
+    </header>
+
+    <section class="about-content-section">
+        <div class="container">
+            <div class="about-flex">
+                <div class="about-image">
+                    <img src="C:\Users\user\Downloads/me.jpg" alt="Nim Dema, Handicraft Artist">
+                </div>
+                <div class="about-text">
+                    <h2>Hello, I'm Nim Dema!</h2>
+                    <p>
+                        Welcome to my little corner of the world, where threads of <strong>love for art</strong> and admiration for <strong>Korean traditional handicrafts</strong> are woven together. I am a passionate handicraft artist based in the beautiful town of Phuentsholing, Bhutan.
+                    </p>
+                    <p>
+                        My journey into the world of handicrafts began with a deep fascination for the intricate details, vibrant colors, and profound cultural stories embedded in Korean artistry. From delicate embroidery to the graceful forms of traditional pottery and the symbolic beauty of Norigae (노리개), I found endless inspiration.
+                    </p>
+                    <p>
+                        It is this profound appreciation that fuels my desire to create. Each piece I make is not just an object, but a reflection of my dedication, a piece of my heart, and an homage to the timeless elegance of Korean crafts. I strive to blend these traditional aesthetics with my own creative touch, resulting in unique items that I hope will bring joy and a sense of wonder to those who own them.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="passion-section">
+        <div class="container">
+            <h3>My Passion & Vision</h3>
+            <p>
+                My greatest passion lies in the meticulous process of creation – from the initial spark of an idea inspired by Korean motifs to the final, tangible piece. I believe that handicrafts carry a special energy, a warmth that machine-made items often lack. It's the touch of the human hand, the focused intention, and the hours of patient work that imbue each creation with its unique soul.
+            </p>
+            <p>
+                My vision is to share these handcrafted treasures with the community in Phuentsholing and beyond. I aim to offer items that are not only beautiful but also meaningful, connecting people to the rich heritage of Korean art while celebrating the spirit of handmade craftsmanship. I dream of my creations adorning homes, becoming cherished gifts, and bringing smiles to faces.
+            </p>
+            <p>
+                Thank you for taking the time to learn a little about me and my work. I invite you to explore my creations and hope you find something that resonates with your heart.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Nim Dema Handicrafts. All Rights Reserved.</p>
+            <p>Phuentsholing, Bhutan | Inspired by Korean Artistry & Crafted with Love</p>
+            <p>Contact: <a href="mailto:nimdem@gmail.com">nimdem@gmail.com</a> | Phone: <a href="tel:+9751776524">+975 1776524</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            const menuToggle = document.getElementById('mobile-menu');
+            const navMenu = document.getElementById('nav-menu');
+             if(menuToggle && navMenu) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    menuToggle.innerHTML = navMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
+                });
+            }
+
+             // Simple scroll animations for sections
+            const animatedElements = document.querySelectorAll('.page-header h1, .page-header p, .about-image, .about-text, .passion-section h3, .passion-section p');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Check if the element has a CSS animation defined
+                        if (entry.target.style.animationName) {
+                            entry.target.style.animationPlayState = 'running';
+                        } else {
+                            // Fallback for elements that might not have a direct CSS animation
+                            // but are targeted by a class like .fadeInUp, etc.
+                            // This part might need refinement based on how CSS animations are applied.
+                            // For now, assuming CSS handles the animation state based on its own rules.
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(el => {
+                 if (el.style.animationName) { // Only pause if animation is defined in JS-observed elements
+                    el.style.animationPlayState = 'paused';
+                 }
+                observer.observe(el);
+            });
+
+            // Hide nav on scroll down, show on scroll up (same as index)
+            let lastScrollTop = 0;
+            const navbar = document.getElementById('main-nav');
+            window.addEventListener("scroll", function() {
+                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > lastScrollTop && currentScroll > navbar.offsetHeight) {
+                    navbar.style.top = "-80px";
+                } else {
+                    navbar.style.top = "0";
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, false);
+        });
+    </script>
+</body>
+</html>

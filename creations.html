@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Creations - Nim Dema Handicrafts</title>
+    <style>
+        /* Global Styles & "Love" Theme - Copied from index.html for consistency */
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;400;600&display=swap');
+
+        :root { /* CSS Variables for easy theming */
+            --primary-color: #ff69b4; /* Hot Pink - love */
+            --secondary-color: #ffb6c1; /* Light Pink */
+            --accent-color: #dda0dd; /* Plum - sophisticated love */
+            --text-color: #4a4a4a;
+            --bg-color: #fff0f5; /* Lavender Blush - soft, loving background */
+            --korean-red: #C90016;
+            --korean-blue: #0047AB;
+            --gold-accent: #FFD700;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x:hidden; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* --- Navigation (Same as index.html) --- */
+        nav { background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); padding: 1rem 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; transition: top 0.3s; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Parisienne', cursive; font-size: 2.5rem; color: var(--primary-color); text-decoration: none; }
+        .logo:hover { color: var(--accent-color); }
+        .nav-links { list-style: none; display: flex; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 600; padding: 0.5rem 1rem; border-radius: 5px; transition: color 0.3s ease, background-color 0.3s ease, transform 0.2s ease; }
+        .nav-links a:hover, .nav-links a.active { color: #fff; background-color: var(--primary-color); transform: translateY(-2px); }
+        .menu-toggle { display: none; font-size: 1.5rem; color: var(--primary-color); cursor: pointer; }
+
+        /* Page Header (Similar to About page) */
+        .page-header {
+            background: linear-gradient(rgba(221,160,221,0.5), rgba(255,105,180,0.5)), url('https://images.pexels.com/photos/5872357/pexels-photo-5872357.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Korean patterns or textures */
+            background-size: cover;
+            background-position: center;
+            padding: 80px 20px;
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 1s ease-out;
+        }
+        .page-header h1 { font-family: 'Parisienne', cursive; font-size: 3.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .page-header p { font-size: 1.2rem; max-width: 700px; margin: 10px auto 0; text-shadow: 1px 1px 3px rgba(0,0,0,0.1); }
+
+        /* Creations Gallery Section */
+        .gallery-section {
+            padding: 50px 0;
+        }
+        .gallery-intro {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+        .gallery-intro h2 {
+            font-size: 2rem;
+            color: var(--korean-red);
+            margin-bottom: 10px;
+        }
+        .gallery-intro p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .creations-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
+            gap: 30px;
+        }
+        .creation-item {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            opacity: 0; /* For animation */
+            animation: popInItem 0.6s ease-out forwards; /* Forwards keeps the final state */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .creation-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(255,105,180,0.3);
+        }
+        .creation-item img {
+            width: 100%;
+            height: 250px; /* Consistent height for images */
+            object-fit: cover;
+            display: block;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+        .item-content {
+            padding: 20px;
+        }
+        .item-content h3 {
+            font-size: 1.6rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif; /* More readable for item titles */
+            font-weight: 600;
+        }
+        .item-content .category {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .item-content p { /* Description */
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            min-height: 60px; /* Ensure some consistent space for descriptions */
+        }
+        .item-content .price-tag {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--korean-red);
+            margin-bottom: 15px;
+        }
+        .enquire-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 8px 18px;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .enquire-button:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        /* --- Footer (Same as index.html) --- */
+        footer { background-color: var(--secondary-color); color: var(--text-color); text-align: center; padding: 30px 0; margin-top: 30px; }
+        footer p { margin: 5px 0; font-size: 0.9rem; }
+        footer a { color: var(--primary-color); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* --- Animation Keyframes --- */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popInItem {
+            0% { opacity: 0; transform: scale(0.7) translateY(20px); }
+            80% { opacity: 1; transform: scale(1.03) translateY(-5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* --- Responsive Design (Same as index.html) --- */
+        @media (max-width: 768px) {
+            .logo { font-size: 2rem; }
+            .menu-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 70px; left: 0; background-color: rgba(255, 255, 255, 0.95); padding: 1rem 0; box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 0; width: 100%; text-align: center; }
+            .nav-links a { display: block; padding: 1rem; border-bottom: 1px solid var(--bg-color); }
+            .nav-links a:hover, .nav-links a.active { background-color: var(--primary-color); color: #fff; transform: none; }
+            .page-header h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="main-nav">
+        <div class="container">
+            <a href="index.html" class="logo">Nim Dema</a>
+            <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Me</a></li>
+                <li><a href="creations.html" class="active">My Creations</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Handcrafted with Love</h1>
+        <p>Explore a collection of unique pieces inspired by Korean artistry.</p>
+    </header>
+
+    <section class="gallery-section">
+        <div class="container">
+            <div class="gallery-intro">
+                <h2>My Artistry Showcase</h2>
+                <p>Each item here is a testament to my passion for handicraft and the beauty of Korean design. Browse through my current collection. For purchases or custom orders, please feel free to <a href="contact.html" style="color:var(--primary-color); font-weight:600;">contact me</a>.</p>
+            </div>
+
+            <div class="creations-gallery">
+                <div class="creation-item" style="animation-delay: 0.1s;" id="textiles">
+                    <img src="C:\Users\user\Downloads/pexels-sedanur-kunuk-78972032-32318674.jpg" alt="Korean Embroidery Art">
+                    <div class="item-content">
+                        <span class="category">Textile Art</span>
+                        <h3>Floral Harmony Silk Scarf</h3>
+                        <p>A luxurious hand-painted silk scarf featuring traditional Korean peony and butterfly motifs, symbolizing prosperity and joy.</p>
+                        <div class="price-tag">Nu. 3500</div>
+                        <a href="contact.html?item=Floral Harmony Silk Scarf" class="enquire-button">Enquire Now</a>
+                    </div>
+                </div>
+
+                <div class="creation-item" style="animation-delay: 0.2s;" id="ceramics">
+                    <img src="C:\Users\user\Downloads/pexels-padrinan-1626591.jpg" alt="Korean Celadon Inspired Pottery">
+                    <div class="item-content">
+                        <span class="category">Ceramics</span>
+                        <h3>Moon Jar Inspired Vase</h3>
+                        <p>A minimalist ceramic vase echoing the serene beauty of traditional Korean moon jars, perfect for ikebana or as a standalone piece.</p>
+                        <div class="price-tag">Nu. 4200</div>
+                        <a href="contact.html?item=Moon Jar Inspired Vase" class="enquire-button">Enquire Now</a>
+                    </div>
+                </div>
+
+                <div class="creation-item" style="animation-delay: 0.3s;" id="accessories">
+                    <img src="C:\Users\user\Downloads/istockphoto-628288160-2048x2048.jpg" alt="Korean Norigae Tassel">
+                    <div class="item-content">
+                        <span class="category">Accessories</span>
+                        <h3>Royal Crane Norigae</h3>
+                        <p>An elegant Norigae tassel featuring intricate crane embroidery and gemstone beads, a symbol of longevity and nobility.</p>
+                        <div class="price-tag">Nu. 2800</div>
+                        <a href="contact.html?item=Royal Crane Norigae" class="enquire-button">Enquire Now</a>
+                    </div>
+                </div>
+
+                <div class="creation-item" style="animation-delay: 0.4s;">
+                    <img src="
+C:\Users\user\Downloads/pexels-alvina-song-2152747817-32369834.jpg" alt="Hanji Paper Craft Box">
+                    <div class="item-content">
+                        <span class="category">Paper Craft</span>
+                        <h3>Hanji Lotus Box</h3>
+                        <p>A decorative box crafted from traditional Hanji (Korean paper) adorned with lotus flower designs, ideal for storing precious items.</p>
+                        <div class="price-tag">Nu. 1800</div>
+                        <a href="contact.html?item=Hanji Lotus Box" class="enquire-button">Enquire Now</a>
+                    </div>
+                </div>
+                 <div class="creation-item" style="animation-delay: 0.5s;">
+                    <img src="C:\Users\user\Downloads/12istockphoto-1188598070-612x612.jpg" alt="Hand-painted Korean Fan">
+                    <div class="item-content">
+                        <span class="category">Decorative Art</span>
+                        <h3>Plum Blossom Fan</h3>
+                        <p>A beautiful hand-painted fan depicting delicate plum blossoms, a symbol of resilience and beauty in Korean culture. </p>
+                        <div class="price-tag">Nu. 2200</div>
+                        <a href="contact.html?item=Plum Blossom Fan" class="enquire-button">Enquire Now</a>
+                    </div>
+                </div>
+                 <div class="creation-item" style="animation-delay: 0.6s;">
+                    <img src="C:\Users\user\Downloads/pexels-h-ng-hoang-2152645962-32356882.jpg" alt="Korean Inspired Coasters">
+                    <div class="item-content">
+                        <span class="category">Home Decor</span>
+                        <h3>Mother-of-Pearl Coasters (Set of 4)</h3>
+                        <p>Exquisite coasters inlaid with mother-of-pearl in traditional Korean patterns, adding elegance to your table setting.</p>
+                        <div class="price-tag">Nu. 3000</div>
+                        <a href="contact.html?item=Mother-of-Pearl Coasters" class="enquire-button">Enquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> Nim Dema Handicrafts. All Rights Reserved.</p>
+            <p>Phuentsholing, Bhutan | Inspired by Korean Artistry & Crafted with Love</p>
+            <p>Contact: <a href="mailto:nimdem@gmail.com">nimdem@gmail.com</a> | Phone: <a href="tel:+9751776524">+975 1776524</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+            const menuToggle = document.getElementById('mobile-menu');
+            const navMenu = document.getElementById('nav-menu');
+            if(menuToggle && navMenu) {
+                menuToggle.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                    menuToggle.innerHTML = navMenu.classList.contains('active') ? '&#10005;' : '&#9776;';
+                });
+            }
+
+            // Staggered animation for gallery items
+            const galleryItems = document.querySelectorAll('.creation-item');
+            galleryItems.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`; // Stagger the start
+            });
+
+             // Simple scroll animations for sections
+            const animatedElements = document.querySelectorAll('.page-header h1, .page-header p, .gallery-intro');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                         if (entry.target.style.animationName) {
+                            entry.target.style.animationPlayState = 'running';
+                         }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(el => {
+                if (el.style.animationName) {
+                    el.style.animationPlayState = 'paused';
+                }
+                observer.observe(el);
+            });
+
+            // Hide nav on scroll down, show on scroll up (same as index)
+            let lastScrollTop = 0;
+            const navbar = document.getElementById('main-nav');
+            window.addEventListener("scroll", function() {
+                let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > lastScrollTop && currentScroll > navbar.offsetHeight) {
+                    navbar.style.top = "-80px";
+                } else {
+                    navbar.style.top = "0";
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            }, false);
+        });
+    </script>
+</body>
+</html>
